@@ -1,0 +1,61 @@
+# LoRA Fine-tuning Configuration
+
+model:
+  model_id: "microsoft/Phi-3-mini-4k-instruct"
+  trust_remote_code: true
+  torch_dtype: "bfloat16"
+
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: "nf4"
+  bnb_4bit_compute_dtype: "bfloat16"
+  bnb_4bit_use_double_quant: true
+
+lora:
+  r: 16
+  lora_alpha: 32
+  target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+  lora_dropout: 0.05
+  bias: "none"
+  task_type: "CAUSAL_LM"
+
+training:
+  output_dir: "./trained_models/default"
+  num_train_epochs: 3
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 0.0002
+  lr_scheduler_type: "cosine"
+  warmup_ratio: 0.03
+  optim: "paged_adamw_8bit"
+  bf16: true
+  tf32: true
+  logging_steps: 10
+  save_strategy: "epoch"
+  save_total_limit: 2
+  dataloader_num_workers: 4
+  group_by_length: true
+  max_seq_length: 512
+
+data:
+  train_data_path: "data/training_data.json"
+  prompt_template: |
+    ### Instruction:
+    You are a friendly game NPC. Respond naturally to the player.
+
+    ### Player:
+    {player}
+
+    ### NPC:
+    {npc}
+
+misc:
+  seed: 42
+  logging_level: "info"

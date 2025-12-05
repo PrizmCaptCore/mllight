@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mllight-model-build"
+version = "0.1.0"
+description = "LoRA fine-tuning tools for lightweight ML models"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "prizm"}
+]
+keywords = ["machine-learning", "lora", "fine-tuning", "npu", "lightweight"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+dependencies = [
+    "torch>=2.0.0",
+    "transformers>=4.35.0",
+    "peft>=0.7.0",
+    "trl>=0.7.0",
+    "bitsandbytes>=0.41.0",
+    "datasets>=2.14.0",
+    "accelerate>=0.24.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+mllight-train = "mllight_train.tunner:main"
+
+[project.urls]
+Homepage = "https://github.com/prizm/mllight"
+Repository = "https://github.com/prizm/mllight"
+Issues = "https://github.com/prizm/mllight/issues"
+
+[tool.setuptools]
+packages = ["mllight_train", "mllight_train.utils"]
+package-dir = {"mllight_train" = "src"}
+
+[tool.setuptools.package-data]
+mllight_train = ["config/*.yaml"]
+
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
