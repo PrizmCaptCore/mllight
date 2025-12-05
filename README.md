@@ -1,6 +1,6 @@
 # mllight
 
-    ml fine tuning 모듈 LoRA 방식
+> ml fine tuning 모듈 LoRA 방식
 
 # setting up for beginner
 
