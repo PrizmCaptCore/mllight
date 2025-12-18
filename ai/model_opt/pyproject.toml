@@ -26,6 +26,7 @@ classifiers = [
 
 dependencies = [
     "open3d>=0.18.0",
+    "numpy>=1.23",
 ]
 
 [project.optional-dependencies]
@@ -34,8 +35,13 @@ dev = [
     "ruff>=0.1.0",
 ]
 
+ml = [
+    "joblib>=1.3",
+]
+
 [project.scripts]
-mesh-simplify = "model_opt.mesh_simplify:main"
+mesh-simplify = "model_opt.mesh_simplify_archive:main"
+remesh-ml = "model_opt.remesh_ml:main"
 
 [tool.setuptools]
 packages = ["model_opt"]
