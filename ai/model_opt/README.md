@@ -31,6 +31,14 @@
   ```
 ※ 현재는 스캐폴드/실험용이며 고품질 리토폴로지 대체는 아닙니다. 품질 지표(곡률·실루엣 등) 추가와 후처리가 필요합니다.
 
+### train-face-model (간단한 스코어러 학습 예제)
+- 휴리스틱 점수를 타깃으로 삼아 RandomForestRegressor를 학습
+- 실제로는 고품질 리토폴 결과를 라벨로 쓰면 더 나은 모델을 만들 수 있습니다.
+  ```bash
+  train-face-model --input mesh1.obj mesh2.obj --output face_scorer.joblib --n_estimators 300
+  # 이후 remesh-ml에서 --model face_scorer.joblib 로 사용
+  ```
+
 지원 포맷: obj/ply/glb/gltf/stl 등 Open3D가 읽을 수 있는 형식. 출력은 동일 형식으로 저장됩니다.
 
 ## 참고
