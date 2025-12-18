@@ -18,7 +18,7 @@
 
 #### 3. 패키지 설치가 필요합니다.
 
-model_build 폴더에 들어간 뒤, (즉 pyproject.toml이 있는 디렉토리에서)
+llm_build 폴더에 들어간 뒤, (즉 pyproject.toml이 있는 디렉토리에서)
 ``` pip install -e . ```
 를 실행해주세요. (혹은 직접 패키지를 말아 저장하셔도 됩니다. whl 형태로 나올거에요.)
 

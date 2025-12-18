@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mllight-model-opt"
+version = "0.1.0"
+description = "Mesh/asset optimization utilities"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "prizm"}
+]
+keywords = ["mesh", "optimization", "game-assets", "open3d"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+dependencies = [
+    "open3d>=0.18.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+mesh-simplify = "model_opt.mesh_simplify:main"
+
+[tool.setuptools]
+packages = ["model_opt"]
+package-dir = {"model_opt" = "src/model_opt"}
